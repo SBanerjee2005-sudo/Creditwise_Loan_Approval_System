@@ -123,6 +123,65 @@ st.markdown("""
         background-color: #ffffff;
         box-shadow: 2px 0 10px rgba(0, 0, 0, 0.05);
     }
+    
+    /* Mobile Responsiveness (320px to 768px) */
+    @media screen and (max-width: 768px) {
+        /* Hero Section */
+        .hero-title {
+            font-size: 2rem;
+            line-height: 1.2;
+            margin-bottom: 0.5rem;
+            word-wrap: break-word;
+        }
+        
+        .hero-subtitle {
+            font-size: 1.05rem;
+            line-height: 1.5;
+            margin-bottom: 1.5rem;
+        }
+        
+        /* Main Container & Form */
+        div[data-testid="stForm"] {
+            padding: 1.25rem 1rem;
+            border-radius: 12px;
+        }
+        
+        /* Typography adjustments for sections */
+        h3 {
+            font-size: 1.3rem !important;
+            margin-bottom: 0.5rem;
+            line-height: 1.3;
+        }
+        
+        /* Button sizing */
+        div[data-testid="stFormSubmitButton"] > button {
+            padding: 0.75rem 1rem;
+            font-size: 1.05rem;
+            width: 100%;
+        }
+        
+        /* Result Cards */
+        .success-card, .warning-card {
+            padding: 1.5rem 1rem;
+            border-radius: 12px;
+            margin-top: 1.5rem;
+        }
+        
+        .result-title {
+            font-size: 1.8rem;
+            margin-bottom: 0.75rem;
+        }
+        
+        .result-text {
+            font-size: 1rem;
+            line-height: 1.5;
+        }
+        
+        /* Ensure no horizontal scrolling */
+        .stApp {
+            overflow-x: hidden;
+        }
+    }
 </style>
 """, unsafe_allow_html=True)
 
@@ -166,7 +225,8 @@ with st.form("loan_application_form"):
         age = st.number_input("Age", min_value=18, max_value=100, value=30, step=1, help="Age of the applicant in years")
         dependents = st.number_input("Dependents", min_value=0, max_value=20, value=0, step=1, help="Number of people dependent on the applicant")
     with col2:
-        gender = st.selectbox("Gender", options=["Male", "Female"])
+        gender_icons = {"Male": "👨 Male", "Female": "👩 Female"}
+        gender = st.selectbox("Gender", options=["Male", "Female"], format_func=lambda x: gender_icons[x])
         education = st.selectbox("Education Level", options=["Graduate", "Not Graduate"])
     with col3:
         marital_status = st.selectbox("Marital Status", options=["Single", "Married"])
