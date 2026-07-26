@@ -8,7 +8,7 @@ st.set_page_config(
     page_title="CreditWise Loan Predictor",
     page_icon="🏦",
     layout="wide",
-    initial_sidebar_state="expanded"
+    initial_sidebar_state="auto"
 )
 
 # Custom CSS for modern fintech theme
@@ -126,31 +126,48 @@ st.markdown("""
     
     /* Mobile Responsiveness (320px to 768px) */
     @media screen and (max-width: 768px) {
+        /* General Layout */
+        .block-container {
+            padding-left: 1rem !important;
+            padding-right: 1rem !important;
+            padding-bottom: 6rem !important; /* Space for Streamlit Cloud floating widgets */
+            padding-top: 2rem !important;
+        }
+        
         /* Hero Section */
         .hero-title {
-            font-size: 2rem;
+            font-size: 1.8rem;
             line-height: 1.2;
             margin-bottom: 0.5rem;
             word-wrap: break-word;
         }
         
         .hero-subtitle {
-            font-size: 1.05rem;
-            line-height: 1.5;
+            font-size: 1rem;
+            line-height: 1.4;
             margin-bottom: 1.5rem;
         }
         
         /* Main Container & Form */
         div[data-testid="stForm"] {
-            padding: 1.25rem 1rem;
+            padding: 1.25rem 0.75rem;
             border-radius: 12px;
+            margin: 0;
+            width: 100%;
+            box-sizing: border-box;
         }
         
         /* Typography adjustments for sections */
         h3 {
-            font-size: 1.3rem !important;
+            font-size: 1.2rem !important;
             margin-bottom: 0.5rem;
             line-height: 1.3;
+            word-wrap: break-word;
+        }
+        
+        /* Hide Streamlit header anchor links on mobile to prevent overlap */
+        h3 a, h2 a, h1 a {
+            display: none !important;
         }
         
         /* Button sizing */
@@ -158,28 +175,42 @@ st.markdown("""
             padding: 0.75rem 1rem;
             font-size: 1.05rem;
             width: 100%;
+            margin-top: 1rem;
+        }
+        
+        /* Inputs and Selects (Prevent iOS Zoom) */
+        div[data-baseweb="select"], div[data-baseweb="input"] {
+            font-size: 16px !important;
         }
         
         /* Result Cards */
         .success-card, .warning-card {
-            padding: 1.5rem 1rem;
+            padding: 1.25rem 1rem;
             border-radius: 12px;
             margin-top: 1.5rem;
+            width: 100%;
+            box-sizing: border-box;
         }
         
         .result-title {
-            font-size: 1.8rem;
-            margin-bottom: 0.75rem;
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
         }
         
         .result-text {
             font-size: 1rem;
-            line-height: 1.5;
+            line-height: 1.4;
         }
         
-        /* Ensure no horizontal scrolling */
-        .stApp {
-            overflow-x: hidden;
+        /* Prevent all horizontal scrolling */
+        .stApp, html, body {
+            overflow-x: hidden !important;
+            max-width: 100vw;
+        }
+        
+        /* Overwrite any problematic margins */
+        hr {
+            margin: 1.5rem 0 !important;
         }
     }
 </style>
