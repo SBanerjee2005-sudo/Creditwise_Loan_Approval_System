@@ -124,8 +124,25 @@ st.markdown("""
         box-shadow: 2px 0 10px rgba(0, 0, 0, 0.05);
     }
     
-    /* Mobile Responsiveness (320px to 768px) */
-    @media screen and (max-width: 768px) {
+    /* Mobile Responsiveness (Phones Only: up to 576px) */
+    @media screen and (max-width: 576px) {
+        /* Force inputs and columns to 100% width to remove empty side gaps */
+        div[data-testid="stHorizontalBlock"] {
+            flex-direction: column !important;
+            flex-wrap: wrap !important;
+            width: 100% !important;
+        }
+        div[data-testid="column"] {
+            width: 100% !important;
+            min-width: 100% !important;
+            max-width: 100% !important;
+            flex: 1 1 100% !important;
+            margin-bottom: 1rem !important;
+        }
+        div[data-baseweb="select"], div[data-baseweb="input"], div[data-testid="stNumberInputContainer"] {
+            width: 100% !important;
+            max-width: 100% !important;
+        }
         /* General Layout */
         .block-container {
             padding-left: 1rem !important;
